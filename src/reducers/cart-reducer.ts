@@ -35,9 +35,13 @@ export type CartState = {
   cart: CartItem[];
 };
 
+const localStorageCart = (): CartItem[] => {
+  const cart = localStorage.getItem('cart');
+  return cart ? JSON.parse(cart) : [];
+};
 export const initialState: CartState = {
   data: db,
-  cart: [],
+  cart: localStorageCart(),
 };
 const MAX_ITEMS = 5;
 const MIN_ITEMS = 1;
